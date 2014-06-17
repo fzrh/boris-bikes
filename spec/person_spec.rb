@@ -1,8 +1,10 @@
 require 'person'
 
 describe Person do
+
+	let(:person) { Person.new }
+
 	it 'has no bike' do
-		person = Person.new
 		expect(person).not_to have_bike
 	end
 
@@ -12,15 +14,12 @@ describe Person do
 	end
 
 	it 'should be able to rent a bike from station' do
-		person = Person.new
 		station = double :station
 		expect(station).to receive(:release_available_bike)
-
 		person.rent_bike_from station
 	end
 
 	it 'should be have a bike after renting it from the station' do
-		person = Person.new
 		station = double :station, {:release_available_bike => :bike}
 		person.rent_bike_from station
 		expect(person).to have_bike
@@ -45,7 +44,6 @@ describe Person do
 		person = Person.new :bike
 		bike = double :bike
 		expect(bike).to receive(:break!)
-
 		person.breaks_bike(bike)
 	end
 
