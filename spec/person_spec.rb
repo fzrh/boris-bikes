@@ -22,13 +22,13 @@ describe Person do
 	end
 
 	it 'should be able to rent a bike from a station' do
-		expect(station).to receive(:release_bikes)
+		expect(station).to receive(:release_available_bikes)
 		person.rent_bike_from(station)
 	end
 
 	it 'should have a bike after renting one from a station' do
-		# station = double (:docking_station,{:release_bikes => :bike})
-		allow(station).to receive(:release_bikes).and_return(:bike)
+		# station = double (:docking_station,{:release_available_bikes => :bike})
+		allow(station).to receive(:release_available_bikes).and_return(:bike)
 		person.rent_bike_from station
 		expect(person).to have_bike
 	end
